@@ -79,13 +79,17 @@ class MainActivity : AppCompatActivity() {
     fun setEdges(view: View) {
         val s = findViewById<TextView>(R.id.edge_number)
         var i = Integer.parseInt(s.text[0].toString())
-        if (i == m - 1) makeVisibility(View.INVISIBLE)
+        if (i == m) {
+            makeVisibility(View.INVISIBLE)
+            val b = findViewById<Button>(R.id.button_topsort)
+            b.visibility = View.VISIBLE
+        }
         val text_v = findViewById<EditText>(R.id.editText_v)
         val text_u = findViewById<EditText>(R.id.editText_u)
         val v = Integer.parseInt(text_v.text.toString())
         val u = Integer.parseInt(text_u.text.toString())
         i++
-        val str = i.toString() + " edge"
+        val str = i.toString() + " edge:"
         s.text = str
         text_u.text.clear()
         text_v.text.clear()
@@ -97,9 +101,15 @@ class MainActivity : AppCompatActivity() {
         var s = ""
         if (!topsort(color, graph, topol)) {
             s = "Graph is cyclic"
+        }else{
+            for(i in 0..topol.size-1)
+            s += i.toString() +" -> "+ topol[i]+"; "
         }
         ans.text = s
         ans.visibility = View.VISIBLE
-
+        val ed = findViewById<TextView>(R.id.edge_number)
+        ed.text = getString(R.string.first)
+        val b = findViewById<Button>(R.id.button_topsort)
+        b.visibility = View.INVISIBLE
     }
 }

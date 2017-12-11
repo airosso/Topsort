@@ -8,5 +8,5 @@
     <string name="u">u</string>
     <string name="set">set</string>
     <string name="topsort">topsort</string>
-    <string name="_1_edge">1 edge:</string>
+    <string name="first">1 edge</string>
 </resources>
